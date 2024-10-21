@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   baseDebugUrl: 'https://localhost:7294/api', // 'https://localhost:5229/api'
   baseProductionUrl: 'https://portfolio-control-server.fly.dev/api'
 };
