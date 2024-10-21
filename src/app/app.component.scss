@@ -1,0 +1,54 @@
+::ng-deep {
+  :root {
+    --color-normal-magenta: #a626a4;
+    --color-selected-text: #8f9b4d;
+    --color-normal-yellow: #c18401;
+    --color-normal-green: #50a14f;
+    --color-normal-black: #383a42;
+    --color-normal-blue: #0184bc;
+    --color-normal-red: #e45649;
+    --color-normal-cyan: #0997b3;
+    --color-selection: #364a59;
+    --color-cursor: #8f9b4d;
+    --color-badge: #f7dc6f;
+    --color-bold: #6c5ce7;
+    --color-link: #34a85a;
+
+    --color-header-transparent: #4149574d;
+    --color-header: #414957;
+    --color-text: #fafafa;
+    --color-body: #282c34;
+  }
+
+
+  * {
+    box-sizing: border-box;
+  }
+
+  main {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+  }
+
+  body {
+    scroll-behavior: smooth;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+  }
+
+
+  .jasmim-bg-100 {
+    background-color: var(--color-header-transparent);
+  }
+
+  .jasmim-bg-800 {
+    background-color: var(--color-header);
+  }
+
+  .jasmim-bg-900 {
+    background-color: var(--color-body);
+    color: var(--color-text);
+  }
+}
