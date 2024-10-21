@@ -1,7 +1,5 @@
 <p-toast />
 
-<jasmim-loading *ngIf="Loading === true;"></jasmim-loading>
-
 <div class="flex flex-wrap flex-auto w-screen space-x-0 md:space-x-6 p-2">
   <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-6 p-4 w-full justify-center bg-gray-100 shadow-lg">
     <div class="mb-6 md:mb-0">
@@ -32,20 +30,20 @@
     <form class="w-full md:w-auto space-y-6" [formGroup]="ContactForm" (submit)="onContactFormSubmit()" (keydown)="onTriggerContactFormSubmit($event)" autocomplete="off">
       <div class="flex flex-col items-start">
         <label for="Nome" class="text-gray-600 font-semibold w-full md:w-24">Nome</label>
-        <input pInputText id="Nome" formControlName="Nome" class="flex-auto w-full md:w-96" autocomplete="off" placeholder="Digite seu nome" />
+        <input pInputText id="Nome" formControlName="Nome" class="jasmim-color-text flex-auto w-full md:w-96" autocomplete="off" placeholder="Digite seu nome" />
       </div>
       <div class="flex flex-col items-start">
         <label for="Email" class="text-gray-600 font-semibold w-full md:w-24">Email</label>
-        <input pInputText id="Email" formControlName="Email" class="flex-auto w-full md:w-96" autocomplete="off" placeholder="Digite seu email" />
+        <input pInputText id="Email" formControlName="Email" class="jasmim-color-text flex-auto w-full md:w-96" autocomplete="off" placeholder="Digite seu email" />
       </div>
       <div class="flex flex-col items-start">
         <label for="Assunto" class="text-gray-600 font-semibold w-full md:w-24">Assunto</label>
         <textarea pInputTextarea id="Assunto" rows="5" cols="30" formControlName="Assunto"
-            class="flex-auto w-full md:w-96" autocomplete="off" placeholder="Escreva sobre o assunto"></textarea>
+            class="jasmim-color-text flex-auto w-full md:w-96" autocomplete="off" placeholder="Escreva sobre o assunto"></textarea>
       </div>
       <div class="flex justify-end gap-2">
-        <p-button class="jasmim-btn-gray" label="Limpar" (click)="ContactForm.reset()" />
-        <p-button class="jasmim-btn-blue" label="Salvar" type="submit" />
+        <button class="jasmim-btn-gray" (click)="ContactForm.reset()">Limpar</button>
+        <button class="jasmim-btn-blue" type="submit">Salvar</button>
       </div>
     </form>
   </div>

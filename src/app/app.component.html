@@ -1,9 +1,13 @@
-<jasmim-body>
-  <jasmim-header></jasmim-header>
-  <main  class="flex flex-col h-screen">
-    <jasmim-profile id="profile"></jasmim-profile>
-    <jasmim-skills id="skills"></jasmim-skills>
-    <jasmim-projects id="projects"></jasmim-projects>
-    <jasmim-contact id="contact"></jasmim-contact>
-  </main>
-</jasmim-body>
+<jasmim-loading *ngIf="Loading; else bodyTemplate"></jasmim-loading>
+
+<ng-template #bodyTemplate>
+  <jasmim-body>
+    <jasmim-header></jasmim-header>
+    <main  class="flex flex-col h-screen">
+      <jasmim-profile id="profile"></jasmim-profile>
+      <jasmim-skills id="skills"></jasmim-skills>
+      <jasmim-projects id="projects"></jasmim-projects>
+      <jasmim-contact id="contact" (LoadingChanged)="updateLoading($event)"></jasmim-contact>
+    </main>
+  </jasmim-body>
+</ng-template>
