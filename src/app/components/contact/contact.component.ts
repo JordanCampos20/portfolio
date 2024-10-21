@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { ToastModule } from 'primeng/toast';
+import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
+import { MessagesModule } from 'primeng/messages';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
-import { ResponseViewModel } from '../../interfaces/response';
-import { ContatoService } from '../../services/contato.service';
 import { LoadingComponent } from '../loading/loading.component';
+import { ContatoService } from '../../services/contato.service';
 
 @Component({
   selector: 'jasmim-contact',
@@ -20,9 +21,11 @@ import { LoadingComponent } from '../loading/loading.component';
     InputTextareaModule,
     LoadingComponent,
     InputTextModule,
+    MessagesModule,
     CommonModule,
     ButtonModule,
-    ToastModule
+    RippleModule,
+    ToastModule,
   ],
   providers: [
     MessageService
@@ -32,10 +35,10 @@ import { LoadingComponent } from '../loading/loading.component';
 })
 export class ContactComponent {
   ContactForm: FormGroup;
-  Loading: boolean = false;
+  @Output() LoadingChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private contatoService: ContatoService,
-    private messageService: MessageService,
+      private messageService: MessageService,
       private fb: FormBuilder) {
     this.ContactForm = this.fb.group({
       Nome: ['', Validators.required],
@@ -46,22 +49,27 @@ export class ContactComponent {
 
   onContactFormSubmit(): void {
     if (this.ContactForm.valid) {
-      this.Loading = true;
-      this.contatoService.postContato(this.ContactForm.value).subscribe({
+      this.LoadingChanged.emit(true);
+      this.contatoService.postContato(this.ContactForm.value)
+        .subscribe({
           next: (response) => {
-            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: response.Message });
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: response.Message });
             this.ContactForm.reset();
-            this.Loading = false;
           },
           error: (response) => {
-            if ("Message" in response)
-              this.messageService.add({ severity: 'danger', summary: 'Erro', detail: response.Message });
-            else
-              this.messageService.add({ severity: 'danger', summary: 'Erro', detail: "Erro não tratado!" });
-            this.Loading = false;
+            if ("Message" in response) {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: response.Message });
+            }
+            else {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: "Erro inesperado!" });
+            }
+          },
+          complete: () => {
+            this.LoadingChanged.emit(false);
           }
         }
       );
+      this.LoadingChanged.emit(false);
     }
   }
 
