@@ -30,16 +30,28 @@
     <form class="w-full md:w-auto space-y-6" [formGroup]="ContactForm" (submit)="onContactFormSubmit()" (keydown)="onTriggerContactFormSubmit($event)" autocomplete="off">
       <div class="flex flex-col items-start">
         <label for="Nome" class="text-gray-600 font-semibold w-full md:w-24">Nome</label>
-        <input pInputText id="Nome" formControlName="Nome" class="jasmim-color-text flex-auto w-full md:w-96" autocomplete="off" placeholder="Digite seu nome" />
+        <input pInputText id="Nome" formControlName="Nome"
+          [ngClass]=" nome?.invalid && nome?.touched ? 'ng-invalid ng-dirty' : '' " class="jasmim-color-text flex-auto w-full md:w-96" autocomplete="off" placeholder="Digite seu nome" />
+        <div *ngIf="nome?.invalid && nome?.touched">
+          <small class="jasmim-color-text" *ngIf="nome?.errors?.['required']">Nome é obrigatório.</small>
+        </div>
       </div>
       <div class="flex flex-col items-start">
         <label for="Email" class="text-gray-600 font-semibold w-full md:w-24">Email</label>
-        <input pInputText id="Email" formControlName="Email" class="jasmim-color-text flex-auto w-full md:w-96" autocomplete="off" placeholder="Digite seu email" />
+        <input pInputText id="Email" formControlName="Email"
+          [ngClass]=" email?.invalid && email?.touched ? 'ng-invalid ng-dirty' : '' " class="jasmim-color-text flex-auto w-full md:w-96" autocomplete="off" placeholder="Digite seu email" />
+        <div *ngIf="email?.invalid && email?.touched">
+          <small class="jasmim-color-text" *ngIf="email?.errors?.['required']">Email é obrigatório.</small>
+          <small class="jasmim-color-text" *ngIf="email?.errors?.['email']">Formato de email inválido.</small>
+        </div>
       </div>
       <div class="flex flex-col items-start">
         <label for="Assunto" class="text-gray-600 font-semibold w-full md:w-24">Assunto</label>
         <textarea pInputTextarea id="Assunto" rows="5" cols="30" formControlName="Assunto"
-            class="jasmim-color-text flex-auto w-full md:w-96" autocomplete="off" placeholder="Escreva sobre o assunto"></textarea>
+          [ngClass]=" assunto?.invalid && assunto?.touched ? 'ng-invalid ng-dirty' : '' " class="jasmim-color-text flex-auto w-full md:w-96" autocomplete="off" placeholder="Escreva sobre o assunto"></textarea>
+        <div *ngIf="assunto?.invalid && assunto?.touched">
+          <small class="jasmim-color-text" *ngIf="assunto?.errors?.['required']">Assunto é obrigatório.</small>
+        </div>
       </div>
       <div class="flex justify-end gap-2">
         <button class="jasmim-btn-gray" (click)="ContactForm.reset()">Limpar</button>

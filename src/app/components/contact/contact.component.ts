@@ -42,9 +42,21 @@ export class ContactComponent {
       private fb: FormBuilder) {
     this.ContactForm = this.fb.group({
       Nome: ['', Validators.required],
-      Email: ['', Validators.required],
+      Email: ['', [Validators.required, Validators.email]],
       Assunto: ['', Validators.required]
     });
+  }
+
+  get nome() {
+    return this.ContactForm.get('Nome');
+  }
+
+  get email() {
+    return this.ContactForm.get('Email');
+  }
+
+  get assunto() {
+    return this.ContactForm.get('Assunto');
   }
 
   onContactFormSubmit(): void {
