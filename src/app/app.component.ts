@@ -33,7 +33,6 @@ export class AppComponent {
   Loading: boolean = false;
 
   updateLoading(valor: boolean) {
-    console.log(valor);
     this.Loading = valor;
   }
 }
