@@ -4,5 +4,7 @@
 }
 
 .scrolling {
+  display: flex;
   animation: spin 25s linear infinite;
+  min-width: calc(16 * 4rem + 15 * 1.5rem);
 }
