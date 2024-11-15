@@ -1,31 +1,15 @@
-<div class="grid grid-cols-1 xl:grid-cols-2 w-screen">
+<div class="grid grid-cols-1 xl:grid-cols-2">
   <div *ngFor="let projeto of projetos" class="p-2">
     <div class="grid grid-cols-1 md:grid-cols-2 items-center md:space-x-6 p-4 bg-gray-100
       rounded-lg shadow-lg transform transition-all duration-300
       hover:-translate-y-2 hover:shadow-xl cursor-pointer" (click)="onOpenProject(projeto)">
 
-      <div class="relative group w-full h-64">
-        <div class="w-full h-full
-          2xl:transition-all
-          2xl:duration-300
-          2xl:ease-in-out
-          2xl:group-hover:fixed
-          2xl:group-hover:inset-0
-          2xl:group-hover:z-50
-          2xl:group-hover:flex
-          2xl:group-hover:items-center
-          2xl:group-hover:justify-center">
+      <div class="relative group w-full">
+        <div class="w-full h-full">
           <img
             [src]="projeto.ImagemAtualSrc"
             [alt]="projeto.ImagemAtualAlt"
-            class="w-full h-full object-cover
-              rounded-lg
-              2xl:transition-all
-              2xl:duration-300
-              2xl:ease-in-out
-              2xl:group-hover:w-[50vw]
-              2xl:group-hover:h-[50vh]
-              2xl:group-hover:m-auto">
+            class="w-full h-full rounded-lg">
         </div>
       </div>
       <div class="space-y-4 mt-4 md:mt-0">
